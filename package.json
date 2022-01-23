@@ -38,6 +38,7 @@
     "vue-metamask": "^2.0.3",
     "vue-metamask-tip": "^0.1.0",
     "vue-mobile-sized-view": "^0.1.1",
+    "vue-resource": "^1.5.3",
     "vue-responsive": "^1.1.0",
     "vue-router": "^3.2.0",
     "vue-social-sharing": "^3.0.8",

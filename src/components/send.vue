@@ -56,7 +56,7 @@
 import Vue from 'vue';
 import profilenav from '../components/profilenav.vue'
 import VueSweetalert2 from 'vue-sweetalert2';
-
+import axios from 'axios'
 
 Vue.use(VueSweetalert2);
 var balance1=0;
@@ -71,6 +71,7 @@ export default {
     amount: '',
     time: 'ServerValue.TIMESTAMP',
     send1:false,
+    data1:''
   
    
     }
@@ -96,7 +97,105 @@ export default {
     //  this.send();
 
     // },
+   token(){
+ axios({
+    // Below is the API URL endpoint
+    url: "https://cors-anywhere.herokuapp.com/https://app.sandbox.midtrans.com/snap/v1/transactions",
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+     
+      Authorization:
+        "Basic " +
+        Buffer.from("SB-Mid-server-NZEpgt7TfGWe675szo1VTyao").toString("base64")
+      // Above is API server key for the Midtrans account, encoded to base64
+    },
+    data:
+      // Below is the HTTP request body in JSON
+      {
+        transaction_details: {
+          order_id: "gurumint" + Math.round(new Date().getTime() / 1000),
+          gross_amount: parseInt(document.getElementById('am1').innerHTML)
+        },
+        credit_card: {
+          secure: true
+        },
+        customer_details: {
+          first_name: "Test",
+          last_name: "1",
+          email: "testmidtrans@mailnesia.com",
+          phone: "08111224333"
+        }
+      }
+  }).then(
+    (snapResponse) => {
+     this.data1 = snapResponse.data.token;
+      console.log("Retrieved snap token:", this.data1);
+      // Pass the Snap Token to frontend, render the HTML page
+    
+    },
+    (error) => {
    
+      console.log(error);
+    }
+  )
+
+
+   },
+
+   midtrans(){
+     this.token();
+       window.snap.pay(this.data1, {
+          onSuccess: function(){
+            /* You may add your own implementation here */
+          
+
+          },
+          onPending: function(result){
+
+            /* You may add your own implementation here */
+
+
+            // alert("wating your payment!"); 
+            console.log(result);
+                  var FirebaseRef = firebase.database().ref()
+    let i = 0
+  
+  // let rout=this.$router
+   
+    firebase.auth().onAuthStateChanged((user) => {
+var a1=document.getElementById('am1').innerHTML
+
+var a2=parseInt(a1)
+var b1=parseInt(balance1)
+       let bal =b1 + a2
+        firebase.database().ref('accounts/'+user.uid+'/balance').set(bal)
+       
+
+
+
+        // rout.replace('/withdraw')
+     i=i+=1
+  FirebaseRef.child('transactions').child(user.uid).push( {
+            "trans_id": Math.round(new Date().getTime() / 1000),
+          "amount":parseInt(a1),    
+          "type": "deposit",
+          "time_performed":    new Date().toLocaleString(),
+          })   
+          })
+          },
+          onError: function(result){
+            /* You may add your own implementation here */
+            alert("payment failed!"); console.log(result);
+          },
+          onClose: function(){
+            /* You may add your own implementation here */
+            alert('you closed the popup without finishing the payment');
+          }
+        })
+   },
+
  makepayment(){
 
       var options = {
@@ -175,7 +274,8 @@ var b1=parseInt(balance1)
   
      send:function(){
     let rout = this.$router
- this.makepayment()
+//  this.makepayment()
+this.midtrans();
    
     firebase.auth().onAuthStateChanged((user) => {
   
@@ -213,7 +313,10 @@ rout.replace('/withdraw')
   },
   mounted(){
      
+   //axios midtrans
    
+
+
    
     const Self = this
  

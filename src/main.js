@@ -6,10 +6,10 @@ import i18n from '@/plugins/i18n';
 import FlagIcon from 'vue-flag-icon';
 import router from './router'
 import store from './store';
-
-
 Vue.use(FlagIcon);
 Vue.use(firestorePlugin);
+
+
 
 
 Vue.config.productionTip = false;
@@ -30,7 +30,6 @@ new Vue({
   vuetify,
   router,
   store,
- 
   i18n,
   render: (h) => h(App)
 }).$mount("#app");
