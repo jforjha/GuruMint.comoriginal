@@ -134,9 +134,9 @@ export default {
           secure: true
         },
         customer_details: {
-          first_name: "Test",
-          last_name: "1",
-          email: "testmidtrans@mailnesia.com",
+          first_name: "GuruMint",
+          last_name: "",
+          email: "Gurumint@gurumint.com",
           phone: "08111224333"
         }
       }
@@ -179,7 +179,7 @@ this.token();
   // let rout=this.$router
    
     firebase.auth().onAuthStateChanged((user) => {
-var a1=document.getElementById('am1').innerHTML
+var a1=parseInt(document.getElementById("am2").value)
 
 var a2=parseInt(a1)
 var b1=parseInt(balance1)
@@ -294,8 +294,7 @@ var b1=parseInt(balance1)
     send:function(){
    this.midtrans();
 //  this.makepayment()
-   
-    firebase.auth().onAuthStateChanged((user) => {
+firebase.auth().onAuthStateChanged((user) => {
   
    
           var reb3 = firebase.database().ref('transactions/'+user.uid);
@@ -307,6 +306,7 @@ var b1=parseInt(balance1)
   //      "Transaction ID : "+ transid)},2000)
    alert("Transaction successful" + "\n"+
        "Transaction ID : "+ transid)
+
        setTimeout(function () {
                alert("Balance added successfully" + "\n"+
                "Now please make offer")},1000)
@@ -441,6 +441,14 @@ updateTimer()
 }, 1000);
 // code ends
 
+//update token for every seconds
+function token(){
+
+}
+setInterval(function(){
+token()
+}, 1000);
+// code ends
 
 	var retr = firebase.database().ref('biddingdata/').orderByChild( 'time_performed')
     retr.on('value', function(snapshot) {

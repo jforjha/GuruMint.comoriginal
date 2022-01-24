@@ -122,9 +122,9 @@ export default {
           secure: true
         },
         customer_details: {
-          first_name: "Test",
-          last_name: "1",
-          email: "testmidtrans@mailnesia.com",
+          first_name: "GuruMint",
+          last_name: "",
+          email: "GuruMint@gurumint.com",
           phone: "08111224333"
         }
       }
