@@ -109,10 +109,17 @@ export default {
   },
   },
   methods: {
- token(){
- axios({
+ 
+
+
+
+ midtrans(){
+    //  this.token();
+
+axios({
     // Below is the API URL endpoint
-    url: "https://cors-anywhere.herokuapp.com/https://app.sandbox.midtrans.com/snap/v1/transactions",
+   
+    url: "https://thingproxy.freeboard.io/fetch/https://app.sandbox.midtrans.com/snap/v1/transactions",
     method: "post",
     headers: {
       "Content-Type": "application/json",
@@ -136,7 +143,7 @@ export default {
         customer_details: {
           first_name: "GuruMint",
           last_name: "",
-          email: "Gurumint@gurumint.com",
+          email: "GuruMint@gurumint.com",
           phone: "08111224333"
         }
       }
@@ -144,23 +151,7 @@ export default {
     (snapResponse) => {
      this.data1 = snapResponse.data.token;
       console.log("Retrieved snap token:", this.data1);
-      // Pass the Snap Token to frontend, render the HTML page
-    
-    },
-    (error) => {
-   
-      console.log(error);
-    }
-  )
-
-
-   },
-
-
-
-midtrans(){
-this.token();
-     window.snap.pay(this.data1, {
+      window.snap.pay(this.data1, {
           onSuccess: function(){
             /* You may add your own implementation here */
           
@@ -179,7 +170,7 @@ this.token();
   // let rout=this.$router
    
     firebase.auth().onAuthStateChanged((user) => {
-var a1=parseInt(document.getElementById("am2").value)
+var a1=document.getElementById("am2").value
 
 var a2=parseInt(a1)
 var b1=parseInt(balance1)
@@ -208,9 +199,20 @@ var b1=parseInt(balance1)
             alert('you closed the popup without finishing the payment');
           }
         })
+      // Pass the Snap Token to frontend, render the HTML page
+    
+    },
+    (error) => {
+   
+      console.log(error);
+    }
+  )
 
 
-},
+
+
+       
+   },
 
 
 
