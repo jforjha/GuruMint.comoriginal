@@ -119,7 +119,7 @@ export default {
 axios({
     // Below is the API URL endpoint
    
-    url: "https://thingproxy.freeboard.io/fetch/https://app.sandbox.midtrans.com/snap/v1/transactions",
+    url: process.env.VUE_APP_SERVICE_URL,
     method: "post",
     headers: {
       "Content-Type": "application/json",
@@ -127,7 +127,7 @@ axios({
      
       Authorization:
         "Basic " +
-        Buffer.from("SB-Mid-server-NZEpgt7TfGWe675szo1VTyao").toString("base64")
+        Buffer.from(process.env.VUE_APP_midtrans).toString("base64")
       // Above is API server key for the Midtrans account, encoded to base64
     },
     data:
