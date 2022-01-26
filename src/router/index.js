@@ -21,14 +21,15 @@ import biddingwithdraw from '../components/BiddingWithdraw'
 import biddingdashboard from '../components/BiddingUserDashboard'
 import kashish from '../components/kashish.vue'
 import agnezmo from '../components/agnezmo'
-
 import sunny from '../components/Sunny.vue'
 import transactionhistory from '../components/transactionhistory.vue'
 import nft from '../components/nft.vue'
 import agneztest from '../components/agneztest.vue'
 import cintalaura from '../components/cintalaura.vue'
 import ico from '../components/ico.vue'
-import pay from '../components/pay.vue'
+import profilecreation from '../components/profilecreation.vue'
+import userprofile from '../components/userprofile.vue'
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -38,7 +39,9 @@ const routes = [
     component: Landing,
   },
   { path: "/cintalaura", name: "cintalaura", component: cintalaura},
-  { path: "/pay", name: "pay", component: pay},
+  {path:"/profilecreation", name:"profilecreation" ,component: profilecreation},
+  {path:"/userprofile", name:"userprofile" ,component: userprofile},
+
   { path: "/shahrukh", name: "Cr", component: Cr},
   { path: "/ico", name: "ico", component: ico},
   
