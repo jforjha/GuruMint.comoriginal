@@ -140,17 +140,7 @@ axios({
       console.log("Retrieved snap token:", this.data1);
       window.snap.pay(this.data1, {
           onSuccess: function(){
-            /* You may add your own implementation here */
-          
-
-          },
-          onPending: function(result){
-
-            /* You may add your own implementation here */
-
-
-            // alert("wating your payment!"); 
-            console.log(result);
+               
                   var FirebaseRef = firebase.database().ref()
     let i = 0
   
@@ -176,6 +166,18 @@ var b1=parseInt(balance1)
           "time_performed":    new Date().toLocaleString(),
           })   
           })
+            /* You may add your own implementation here */
+          
+
+          },
+          onPending: function(result){
+
+            /* You may add your own implementation here */
+
+
+            alert("wating for your payment!");
+            console.log(result) 
+       
           },
           onError: function(result){
             /* You may add your own implementation here */

@@ -153,24 +153,14 @@ axios({
       console.log("Retrieved snap token:", this.data1);
       window.snap.pay(this.data1, {
           onSuccess: function(){
-            /* You may add your own implementation here */
-          
-
-          },
-          onPending: function(result){
-
-            /* You may add your own implementation here */
-
-
-            // alert("wating your payment!"); 
-            console.log(result);
+                   
                   var FirebaseRef = firebase.database().ref()
     let i = 0
   
   // let rout=this.$router
    
     firebase.auth().onAuthStateChanged((user) => {
-var a1=document.getElementById("am2").value
+var a1=parseInt(document.getElementById("am2").value)
 
 var a2=parseInt(a1)
 var b1=parseInt(balance1)
@@ -189,6 +179,16 @@ var b1=parseInt(balance1)
           "time_performed":    new Date().toLocaleString(),
           })   
           })
+            
+            /* You may add your own implementation here */
+          
+
+          },
+          onPending: function(result){
+
+            /* You may add your own implementation here */
+
+alert(result);
           },
           onError: function(result){
             /* You may add your own implementation here */
