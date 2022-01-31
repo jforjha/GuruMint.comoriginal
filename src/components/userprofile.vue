@@ -4,12 +4,8 @@
 
   <div id=nav1>
     <profilenav/>
- <div class="space stars1"></div>
-  <div class="space stars2"></div>
-  <div class="space stars3"></div>
+
     <section>
- 
- 
       <div class="big">
         <div class="first-page">
          
@@ -95,21 +91,28 @@
                     >
                   </router-link>
                 
-                  
+                
                 </div>
               </div> -->
             </div>
-        
+          {{urlfirstname}}
           </div>
         </div>
       </div>
+
     <!-- </div> -->
     </section>
-    
-    <section>
+  {{imageurl}}
+    <section class="row">
      
- 
      
+       <Item class="shakethis"
+        v-for="item in firstname1"
+        :key="item.invId"
+        :invId="item.invId"
+        :name="item.name"
+        :image="item.image"
+        :price="item.price" />
     </section>
     
     <br><br><br><br>
@@ -168,8 +171,9 @@ export default {
   data() {
     
     return {
- 
-
+  
+ nft_name:'undefined',
+urlfirstname:String(window.location.href).substring(34,47),
 firstname:'',
 lastname:'',
 description1:'',
@@ -186,7 +190,8 @@ imageurl:''
   
   
   methods: {
- 
+  
+
        
 
    
@@ -206,28 +211,34 @@ imageurl:''
    
   components: { Series,Facebook,Twitter,WhatsApp,Telegram,Linkedin,Navigation,guidance,foote, Item,
    kashishportfolio,ShoppingCart,profilenav },
+ computed: { firstname1() { return this.$store.getters.firstname1}},
 
   mounted() {
-      
-      const Self=this
-           var storageRef = firebase.storage().ref();
-var userdata= firebase.database().ref("profiledata")
-      userdata.on('value', function(snapshot) {
-  Self.firstname=snapshot.val().name
-  Self.lastname=snapshot.val().lastname
-  Self.description1=snapshot.val().description
-  Self.linkurl=snapshot.val().linkurl
-  Self.imageurl=storageRef.child("image1")
-        });
-
  
+
+      const Self=this
    
 
 
-    this.onResize();
-    window.addEventListener("resize", this.onResize, { passive: true });
-     postscribe('#linkedin', '<script src="https://platform.linkedin.com/badges/js/profile.js"><\/script>')
-  },
+
+
+
+
+
+var userdata= firebase.database().ref("userdata")
+      userdata.orderByChild('id').equalTo(this.urlfirstname).on('value', function(snapshot) {
+  snapshot.forEach(snap => {
+  Self.firstname=snap.val().name
+  Self.lastname=snap.val().lastname
+  Self.description1=snap.val().description
+  Self.nft_name=snap.val().nft1_name
+      })});
+if(Self.nft1_name=='undefined'){
+  window.location.reload()
+}
+
+
+      },
   
 
 };

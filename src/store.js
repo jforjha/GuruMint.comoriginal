@@ -1,9 +1,69 @@
+import firebase from 'firebase';
 import Vue from 'vue';
 import Vuex from 'vuex';
+
 var nf=Intl.NumberFormat();
 var x=999000;
+var url=String(window.location.href).substring(34,47)
 Vue.use(Vuex);
 
+// image url
+var storageRef = firebase.storage().ref().child("nft_image/"+String(window.location.href).substring(34,47));
+var thisRef = storageRef.child("image1");
+var thisRef2 = storageRef.child("image2");
+var thisRef3 = storageRef.child("image3");
+var thisRef4 = storageRef.child("image4");
+thisRef.getDownloadURL().then((url) => {
+localStorage.imageurl=url
+})
+thisRef2.getDownloadURL().then((url) => {
+  localStorage.imageurl2=url
+  })
+  thisRef3.getDownloadURL().then((url) => {
+    localStorage.imageurl3=url
+    })
+    thisRef4.getDownloadURL().then((url) => {
+      localStorage.imageurl4=url
+      })
+
+
+var userdata= firebase.database().ref("userdata")
+userdata.orderByChild('id').equalTo(url).on('value', function(snapshot) {
+  snapshot.forEach(snap => {
+localStorage.price1 = snap.val().nft1_price
+localStorage.price2 = snap.val().nft2_price
+localStorage.price3 = snap.val().nft3_price
+localStorage.price4 = snap.val().nft4_price
+localStorage.name=String(snap.val().nft1_name)
+localStorage.name2=String(snap.val().nft2_name)
+localStorage.name3=String(snap.val().nft3_name)
+localStorage.name4=String(snap.val().nft4_name)
+
+
+ }) });
+
+  function price4() {
+   
+    return localStorage.price1;
+    
+    
+}
+function both(){
+ price4
+ name
+}
+setInterval( both, 1 );
+
+
+
+
+var price = price4()
+
+function name() {
+  
+return localStorage.name
+}
+var name1=name()  
 export default new Vuex.Store({
   state: {
     forSale: [
@@ -19,7 +79,15 @@ export default new Vuex.Store({
       // { invId: 4, name: 'Project4', image: 'https://99designs-blog.imgix.net/blog/wp-content/uploads/2019/03/attachment_97824570.gif?auto=format&q=60&fit=max&w=930', price: 299 },
     ],
 
+firstname1:[
+  {invId: 1, name: name1, image: String(localStorage.imageurl),  price: parseInt(price)},
+  {invId: 2, name: localStorage.name2, image: String(localStorage.imageurl2),  price: parseInt(localStorage.price2)},
+  {invId: 3, name:localStorage.name3, image: String(localStorage.imageurl3),  price: parseInt(localStorage.price3)},
+  {invId: 4, name: localStorage.name4, image: String(localStorage.imageurl4),  price: parseInt(localStorage.price4 )},
+  
 
+
+],
     forSale1: [
       // { invId: 1, name: 'NFT1', image: 'https://99designs-blog.imgix.net/blog/wp-content/uploads/2019/03/Prof._Stampfers_Stroboscopische_Scheibe_No._X-1.gif?auto=format&q=60&fit=max&w=930', price: 999 },
       // { invId: 2, name: 'NFT2', image: 'https://99designs-blog.imgix.net/blog/wp-content/uploads/2019/03/7717534e-a416-4606-8c18-e05839ac155b.gif?auto=format&q=60&fit=max&w=930', price: 1499 },
@@ -43,6 +111,9 @@ export default new Vuex.Store({
     cintabidding: [
       { invId: 4, name: 'One Day with Cinta Laura: VIP Access to shooting set', image: 'https://firebasestorage.googleapis.com/v0/b/gurumintcom-282c4.appspot.com/o/nft4correct_cinta.gif?alt=media&token=29e4892d-91cf-4260-9080-068d3b046e41', price: nf.format(x)  },
     ],
+    // firstname:[
+
+    // ],
     inCart: [],
  
   },
@@ -53,12 +124,11 @@ export default new Vuex.Store({
     inCart: state => state.inCart,
     cinta: state => state.cinta,
     cintabidding: state => state.cintabidding,
+    firstname1:state => state.firstname1
    
   },
   mutations: {
-    ADD_TO_CART(state, invId) { state.inCart.push(invId); },
-    
-    
+    ADD_TO_CART(state, invId) { state.inCart.push(invId); },  
     REMOVE_FROM_CART(state, index) { state.inCart.splice(index, 1); },
   },
   actions: {
@@ -67,3 +137,8 @@ export default new Vuex.Store({
   },
 });
 
+
+
+
+
+     

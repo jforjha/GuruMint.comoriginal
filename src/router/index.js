@@ -29,6 +29,14 @@ import cintalaura from '../components/cintalaura.vue'
 import ico from '../components/ico.vue'
 import profilecreation from '../components/profilecreation.vue'
 import userprofile from '../components/userprofile.vue'
+import firebase from 'firebase';
+
+var userdata= firebase.database().ref("userdata")
+userdata.on('value', function(snapshot) {
+  snapshot.forEach(snap => {
+localStorage.name=snap.val().name
+
+})});
 
 Vue.use(VueRouter);
 
@@ -40,7 +48,8 @@ const routes = [
   },
   { path: "/cintalaura", name: "cintalaura", component: cintalaura},
   {path:"/profilecreation", name:"profilecreation" ,component: profilecreation},
-  {path:"/userprofile", name:"userprofile" ,component: userprofile},
+
+  {path: "/userprofile/:id",name:"userprofile" ,component: userprofile,},
 
   { path: "/shahrukh", name: "Cr", component: Cr},
   { path: "/ico", name: "ico", component: ico},

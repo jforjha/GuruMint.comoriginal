@@ -5,7 +5,8 @@
       <div  class="card-body">
         <div style="margin-left:20px">
         <h4 class="card-title" style="font-family:Helvetica Neue;text-align: center"><strong>{{ name }}</strong></h4>
-        <div class="card-text" style="font-family:Helvetica Neue;text-align: center"><strong>{{ String(price).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') | dollars }}</strong></div>
+
+        <div class="card-text" style="font-family:Helvetica Neue;text-align: center"><strong>{{price | dollars}} </strong></div>
         <div class="row justify-content-end">
         </div>
            <!-- <button class="btn btn-primary" data-toggle="modal" data-target="#shoppingCart" style="margin-top:10%;width:45%;margin-right:32px" @click="addToCart(invId)">BUY NOW</button> -->

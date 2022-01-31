@@ -38,7 +38,7 @@
             </table>
           </div>
         <!-- for image upload code starts -->
-       
+     
       <!-- code ends -->
             
           <div class="modal-footer">
@@ -50,7 +50,7 @@
               </form>
            
           </div>
-           
+    
         
         </div>
       </div>
@@ -73,6 +73,8 @@ import axios from "axios";
 
  
 
+var id=String(window.location.href).substring(34,47)
+var firstname=String(window.location.href).substring(48,(window.location.href).length)
 
 export default {
   name: 'shoppingCart',
@@ -80,7 +82,9 @@ export default {
   data(){
 
     return {
-     
+
+     url:String(`http://localhost:8080/userprofile/${id+"_"+firstname}`),
+   
       items: this.$store.getters.inCart,
       user:{
   walletAddress:"",
@@ -89,7 +93,8 @@ export default {
     name: ''  , 
     amount: '',
   
-    balance: '',},
+    balance: '',
+    },
     }
   },
   computed: {
@@ -97,21 +102,18 @@ export default {
     numInCart() { return this.inCart.length; },
     cart() {
       return this.$store.getters.inCart.map((cartItem) => {
-        
-        return this.$store.getters.forSale.find((forSaleItem) => {
+        if(window.location.href==String(`http://localhost:8080/userprofile/${id+"_"+firstname}`)){
+        return this.$store.getters.firstname1.find((forSaleItem) => {
+          return cartItem === forSaleItem.invId;
+        });}else if(window.location.href=="http://localhost:8080/agneztest"){
+            return this.$store.getters.forSale.find((forSaleItem) => {
           return cartItem === forSaleItem.invId;
         });
+        }
         
       });
     },
-     cart1() {
-      return this.$store.getters.inCart.map((cartItem) => {
-        
-        return this.$store.getters.forSale.find((forSaleItem) => {
-          return cartItem === forSaleItem.image;
-        });
-      });
-    },
+  
     total() {
       return this.cart.reduce((acc, cur) => acc + cur.price, 0);
     },
@@ -120,7 +122,18 @@ export default {
     dollars,
   },
    mounted(){
-    const Self = this
+
+        const Self = this  
+var userdata= firebase.database().ref("userdata")
+      userdata.on('value', function(snapshot) {
+      snapshot.forEach(snap => {
+        localStorage.firstname=snap.val().name
+localStorage.lastname=snap.val().lastname
+
+
+        })  });
+
+   
   
     firebase.auth().onAuthStateChanged((user) => {
     

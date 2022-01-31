@@ -80,7 +80,7 @@ export default {
       inCart() { return this.$store.getters.inCart; },
  cart() {
       return this.$store.getters.inCart.map((cartItem) => {
-        return this.$store.getters.forSale.find((forSaleItem) => {
+        return this.$store.getters.firstname1.find((forSaleItem) => {
           return cartItem === forSaleItem.invId;
         });
       });
