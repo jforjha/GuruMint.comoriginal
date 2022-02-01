@@ -102,10 +102,10 @@ export default {
     numInCart() { return this.inCart.length; },
     cart() {
       return this.$store.getters.inCart.map((cartItem) => {
-        if(window.location.href==String(`http://localhost:8080/userprofile/${id+"_"+firstname}`)){
+        if(window.location.href==String(`https://gurumint.com/userprofile/${id+"_"+firstname}`)){
         return this.$store.getters.firstname1.find((forSaleItem) => {
           return cartItem === forSaleItem.invId;
-        });}else if(window.location.href=="http://localhost:8080/agneztest"){
+        });}else if(window.location.href=="https://gurumint.com/userprofile/agneztest"){
             return this.$store.getters.forSale.find((forSaleItem) => {
           return cartItem === forSaleItem.invId;
         });

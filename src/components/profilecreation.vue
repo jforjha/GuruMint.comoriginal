@@ -19,7 +19,7 @@
 <br>
 <label>Choose image for NFT1</label> &nbsp;
 <br>
-<input type="file" class="textcolor1"  id="files" name="files[]" title=' hello '/>
+<input type="file" class="textcolor1"  id="files" name="files[]" />
 <br>
 </div>
 <h3>NFT 2 Details</h3>
@@ -32,7 +32,7 @@
 <br>
 <label>Choose image for NFT2</label> &nbsp;
 <br>
-<input type="file" class="textcolor1" id="files2" name="files[]" title=' hello '/>
+<input type="file" class="textcolor1" id="files2" name="files[]" />
 <br>
 </div>
 <h3>NFT 3 Details</h3>
@@ -45,7 +45,7 @@
 <br>
 <label>Choose image for NFT3</label> &nbsp;
 <br>
-<input type="file" class="textcolor1"  id="files3" name="files[]" title=' hello '/>
+<input type="file" class="textcolor1"  id="files3" name="files[]" />
 <br>
 </div>
 <h3>NFT 4 Details</h3>
@@ -58,7 +58,7 @@
 <br>
 <label>Choose image for NFT3</label> &nbsp;
 <br>
-<input class="textcolor1" type="file"  id="files4" name="files[]" title=' hello '/>
+<input class="textcolor1" type="file"  id="files4" name="files[]" />
 <br>
 </div>
 

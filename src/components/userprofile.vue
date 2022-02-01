@@ -14,7 +14,7 @@
               height="100"
               width="100"
               class="creator-image"
-              src="https://firebasestorage.googleapis.com/v0/b/gurumintcom-282c4.appspot.com/o/image1?alt=media&token=d617a135-af1b-4e7c-8de8-634d99369ffb"
+              :src=profileurl
               alt="creator"
             />
             <!-- <button class="subscribe" v-on:click="scrollToBottom()">Buy My NFT</button> -->
@@ -95,14 +95,13 @@
                 </div>
               </div> -->
             </div>
-          {{urlfirstname}}
           </div>
         </div>
       </div>
 
     <!-- </div> -->
     </section>
-  {{imageurl}}
+
     <section class="row">
      
      
@@ -177,7 +176,7 @@ urlfirstname:String(window.location.href).substring(34,47),
 firstname:'',
 lastname:'',
 description1:'',
-imageurl:''
+profileurl:''
   
  
    
@@ -220,8 +219,11 @@ imageurl:''
    
 
 
-
-
+var storageRef = firebase.storage().ref().child("nft_image/"+String(window.location.href).substring(34,47));
+var thisRef = storageRef.child("profile");
+thisRef.getDownloadURL().then((url) => {
+Self.profileurl=String(url)
+})
 
 
 
@@ -232,6 +234,7 @@ var userdata= firebase.database().ref("userdata")
   Self.lastname=snap.val().lastname
   Self.description1=snap.val().description
   Self.nft_name=snap.val().nft1_name
+  
       })});
 if(Self.nft1_name=='undefined'){
   window.location.reload()

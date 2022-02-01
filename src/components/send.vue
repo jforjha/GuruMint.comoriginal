@@ -58,6 +58,8 @@ import profilenav from '../components/profilenav.vue'
 import VueSweetalert2 from 'vue-sweetalert2';
 import axios from 'axios'
 
+var id=String(window.location.href).substring(34,47)
+var firstname=String(window.location.href).substring(48,(window.location.href).length)
 Vue.use(VueSweetalert2);
 var balance1=0;
 var email1=''
@@ -78,11 +80,17 @@ export default {
   },
   computed:{
       inCart() { return this.$store.getters.inCart; },
- cart() {
+   cart() {
       return this.$store.getters.inCart.map((cartItem) => {
+        if(window.location.href==String(`https://gurumint.com/userprofile/${id+"_"+firstname}`)){
         return this.$store.getters.firstname1.find((forSaleItem) => {
           return cartItem === forSaleItem.invId;
+        });}else if(window.location.href=="https://gurumint.com/userprofile/agneztest"){
+            return this.$store.getters.forSale.find((forSaleItem) => {
+          return cartItem === forSaleItem.invId;
         });
+        }
+        
       });
     },
     total() {
