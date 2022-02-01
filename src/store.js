@@ -4,11 +4,12 @@ import Vuex from 'vuex';
 
 var nf=Intl.NumberFormat();
 var x=999000;
-var url=String(window.location.href).substring(34,47)
+// String(window.location.href).substring(34,47)
+var url=String(window.location.href).substring(33,46)
 Vue.use(Vuex);
 
 // image url
-var storageRef = firebase.storage().ref().child("nft_image/"+String(window.location.href).substring(34,47));
+var storageRef = firebase.storage().ref().child("nft_image/"+String(window.location.href).substring(33,46));
 var thisRef = storageRef.child("image1");
 var thisRef2 = storageRef.child("image2");
 var thisRef3 = storageRef.child("image3");

@@ -4,9 +4,9 @@
         <li class="dropdown" >
           <a   class="dropdown-toggle" data-toggle="dropdown" type="button" style="font-size:18px ;text-decoration: none;margin-left:5%" aria-expanded="false" > 
            <i class="fas fa-shopping-cart" style="position:relative;"></i> Cart ({{ numInCart }})</a>
-          <ul id="cartmodal" class="dropdown-menu dropdown-cart" role="menu"  >
+          <ul  class="dropdown-menu dropdown-cart" role="menu"  >
               <li>
-                 <div  class="modal-dialog"  style="margin-right:-2%;margin-left:-16%;margin-bottom:-5%;margin-top:-6%;position:relative">
+                 <div  id="cartmodal" class="modal-dialog"  style="">
         <div class="modal-content"  style="width:130%">
           <div class="modal-header">
             <h5 class="modal-title">SUMMARY</h5>
@@ -73,8 +73,8 @@ import axios from "axios";
 
  
 
-var id=String(window.location.href).substring(34,47)
-var firstname=String(window.location.href).substring(48,(window.location.href).length)
+var id=String(window.location.href).substring(33,46)
+var firstname=String(window.location.href).substring(47,(window.location.href).length)
 
 export default {
   name: 'shoppingCart',
@@ -102,6 +102,7 @@ export default {
     numInCart() { return this.inCart.length; },
     cart() {
       return this.$store.getters.inCart.map((cartItem) => {
+        // String(`https://gurumint.com/userprofile/${id+"_"+firstname}`)
         if(window.location.href==String(`https://gurumint.com/userprofile/${id+"_"+firstname}`)){
         return this.$store.getters.firstname1.find((forSaleItem) => {
           return cartItem === forSaleItem.invId;
@@ -269,21 +270,30 @@ localStorage.lastname=snap.val().lastname
 </script>
 <style lang='scss' scoped>
 #cartmodal{
- display: fixed;
-margin-top: 40%;
-margin-left: -240%;
+margin-right:11%;
+width:400%;
+margin-bottom:-5%;
+margin-left:-50%;
+position:absolute;
+margin-top: -5%;
 
   @media (max-width:812px){
- margin-left:-60%;
- width:70vw;
+ margin-left:-190%;
+ width:100vw;
+ margin-top:-10%;
+ position: absolute;
   }
     @media only screen and (min-width: 1366px){
-       margin-left:-420%;
-       margin-top: 30%;
+      margin-right:11%;
+width:350%;
+margin-bottom:-5%;
+margin-left:-320%;
+position:absolute;
+margin-top: -5%;
     }
 }
 #paynow{
-  margin-left:-50%;
+  margin-left:-30%;
      color:white;
   @media (max-width:812px) {
     color:white;

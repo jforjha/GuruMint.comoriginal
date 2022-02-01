@@ -56,7 +56,7 @@
 
 <input v-model=nft4_desc type="text" minlength=20 placeholder="NFT 4 DESCRIPTION" required><label> *min 20 letters</label>
 <br>
-<label>Choose image for NFT3</label> &nbsp;
+<label>Choose image for NFT4</label> &nbsp;
 <br>
 <input class="textcolor1" type="file"  id="files4" name="files[]" />
 <br>

@@ -172,7 +172,7 @@ export default {
     return {
   
  nft_name:'undefined',
-urlfirstname:String(window.location.href).substring(34,47),
+urlfirstname:String(window.location.href).substring(33,46),
 firstname:'',
 lastname:'',
 description1:'',
@@ -219,7 +219,7 @@ profileurl:''
    
 
 
-var storageRef = firebase.storage().ref().child("nft_image/"+String(window.location.href).substring(34,47));
+var storageRef = firebase.storage().ref().child("nft_image/"+String(window.location.href).substring(33,46));
 var thisRef = storageRef.child("profile");
 thisRef.getDownloadURL().then((url) => {
 Self.profileurl=String(url)

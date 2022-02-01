@@ -89,8 +89,6 @@ import profilenav from '../components/profilenav.vue'
 import AuthLogin from './AuthLogin'
 import { dollars } from '../filters';
 
-var id=String(window.location.href).substring(34,47)
-var firstname=String(window.location.href).substring(48,(window.location.href).length)
 export default {
   name: 'withdraw',
   data () {
@@ -111,17 +109,11 @@ export default {
   components: {AuthLogin,profilenav},
   computed:{
       inCart() { return this.$store.getters.inCart; },
-   cart() {
+ cart() {
       return this.$store.getters.inCart.map((cartItem) => {
-        if(window.location.href==String(`https://gurumint.com/userprofile/${id+"_"+firstname}`)){
         return this.$store.getters.firstname1.find((forSaleItem) => {
           return cartItem === forSaleItem.invId;
-        });}else if(window.location.href=="https://gurumint.com/userprofile/agneztest"){
-            return this.$store.getters.forSale.find((forSaleItem) => {
-          return cartItem === forSaleItem.invId;
         });
-        }
-        
       });
     },
     total() {
@@ -182,7 +174,7 @@ export default {
           })
                FirebaseRef.child('NftsCollection').child(userData.uid).push( { 
          "images":   this.$store.getters.inCart.map((cartItem) => {
-        return this.$store.getters.forSale.find((forSaleItem) => {
+        return this.$store.getters.firstname1.find((forSaleItem) => {
           return cartItem === forSaleItem.invId;
         });
       }),
