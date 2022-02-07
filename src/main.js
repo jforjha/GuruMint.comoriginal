@@ -15,7 +15,7 @@ Vue.use(firestorePlugin);
 Vue.config.productionTip = false;
 var firebaseConfig = {
   apiKey: "AIzaSyD2CMY4KTEel6nzZSy2EG4HhrO9WYQib6g",
-  authDomain: "gurumintcom-282c4.firebaseapp.com",
+  authDomain: "gurumint.com",
   databaseURL: "https://gurumintcom-282c4-default-rtdb.firebaseio.com",
   projectId: "gurumintcom-282c4",
   storageBucket: "gurumintcom-282c4.appspot.com",
